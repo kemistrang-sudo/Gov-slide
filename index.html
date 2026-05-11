@@ -24,6 +24,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: #FFFFFF;
+  pointer-events: none;
 }
 
 .slide {
@@ -37,11 +38,13 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .slide.active {
   display: block;
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* SLIDE HEADER UNIVERSAL */
@@ -84,13 +87,14 @@ body {
 
 /* NAVIGATION CONTROLS */
 .nav-controls {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
-  z-index: 50;
+  z-index: 1000;
+  pointer-events: auto;
 }
 
 .nav-btn {
@@ -107,6 +111,7 @@ body {
   font-size: 18px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
 }
 
 .nav-btn:hover:not(:disabled) {
@@ -128,6 +133,7 @@ body {
   color: #1B2A4E;
   font-weight: 700;
   font-size: 14px;
+  pointer-events: auto;
 }
 
 /* SLIDE-SPECIFIC STYLES */
@@ -508,12 +514,13 @@ body {
 
 /* KEYBOARD INDICATOR */
 .keyboard-hint {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 20px;
   font-size: 11px;
   color: #A0AEC0;
   text-transform: uppercase;
+  pointer-events: auto;
 }
 </style>
 </head>
@@ -723,23 +730,23 @@ body {
       <div class="footer-page" id="page5">5/5</div>
     </div>
   </div>
+</div>
 
-  <!-- NAVIGATION CONTROLS -->
-  <div class="nav-controls">
-    <button class="nav-btn" id="prevBtn" onclick="previousSlide()">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <div class="nav-counter">
-      <span id="currentSlide">1</span>/<span>5</span>
-    </div>
-    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
+<!-- NAVIGATION CONTROLS - OUTSIDE PRESENTATION -->
+<div class="nav-controls">
+  <button class="nav-btn" id="prevBtn" onclick="previousSlide()">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <div class="nav-counter">
+    <span id="currentSlide">1</span>/<span>5</span>
   </div>
+  <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>
 
-  <div class="keyboard-hint">
-    ← → Flèches • Espace • Clic
-  </div>
+<div class="keyboard-hint">
+  ← → Flèches • Espace • Clic
 </div>
 
 <script>
